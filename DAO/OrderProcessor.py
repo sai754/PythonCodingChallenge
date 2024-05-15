@@ -62,8 +62,9 @@ class OrderProcessor(IOrderManagementRepository,DBConnection):
     def createOrder(self, user, products):
         try:
             self.cursor.execute("INSERT INTO orders (userId) VALUES (?)", user.getUserId())
-            orderId = self.cursor.execute("SELECT SCOPE_IDENTITY()").fetchone()[0]
-
+            self.conn.commit()
+            self.cursor.execute("SELECT TOP 1 orderId FROM orders ORDER BY orderId DESC")
+            orderId = self.cursor.fetchone()[0]
             for product_id in products:
                 qn = int(input(f"Enter the quantity for orderid {product_id}: "))
                 self.cursor.execute("INSERT INTO OrderDetails (orderId, productId, quantity) VALUES (?, ?, ?)",

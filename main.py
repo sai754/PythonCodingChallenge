@@ -1,5 +1,5 @@
 from DAO import OrderProcessor
-from Entity import Clothing, Electronics, Product, User
+from Entity import Product, User
 
 
 class OrderManagement:
@@ -84,7 +84,9 @@ class OrderManagement:
                 if user.role != 'Admin':
                     print("You don't have the authorization to check")
                 else:
-                    OrderService.getOrderByUser(user)
+                    customername = input("Enter the Customer name: ")
+                    cust = OrderService.getUserbyUsername(customername)
+                    OrderService.getOrderByUser(cust)
             elif choice == 7:
                 print("See you soon")
                 OrderService.close()
