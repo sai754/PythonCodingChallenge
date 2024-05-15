@@ -71,11 +71,11 @@ insert into orders values
 (2),
 (3)
 
-insert into OrderDetails values
-(1, 1, 2),
-(1, 3, 3),
-(2, 2, 1),
-(3, 4, 2);
+--insert into OrderDetails values
+--(1, 1, 2),
+--(1, 3, 3),
+--(2, 2, 1),
+--(3, 4, 2);
 
 insert into orders (userId) values
 (1),
@@ -83,11 +83,14 @@ insert into orders (userId) values
 (1);
 
 select * from orders; 
+-- Check in the Orders table before inserting values for the OrderDetails
+-- As in some times there can be ForeignKey error if orderId is not matched correctly 
+-- with the orderid in orders table
 
-insert into OrderDetails values
-(16, 1, 2),
-(17, 3, 3),
-(18, 2, 1);
+--insert into OrderDetails values
+--(16, 1, 2),
+--(17, 3, 3),
+--(18, 2, 1);
 
 select * from Users;
 
